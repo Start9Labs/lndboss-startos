@@ -10,7 +10,7 @@ export const getConfig: T.ExpectedExports.getConfig = compat.getConfig({});
 //    "description": "The Tor address for the network interface.",
 //    "type": "pointer",
 //    "subtype": "package",
-//    "package-id": "hello-world",
+//    "package-id": "lndboss",
 //    "target": "tor-address",
 //    "interface": "main"
 //  },

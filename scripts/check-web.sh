@@ -1,7 +1,7 @@
 #!/bin/sh
 
 check_web(){
-    curl --silent --fail hello-world.embassy > /dev/null 2>&1
+    curl --silent --fail lndboss.embassy > /dev/null 2>&1
     echo $? > /root/health-web
 }
 
