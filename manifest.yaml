@@ -52,12 +52,17 @@ main:
     # Specifies where on the service's file system its persistence directory should be mounted prior to service startup
     main: /root
     lnd: /mnt/lnd
+    lndboss: /home/node/.lnd
 # Health checks 
 health-checks:
-  web-ui:
+  main:
     name: Web Interface
-    success-message: lndboss is ready to be visited in your browser.
-    type: script
+    type: docker
+    image: main
+    entrypoint: health-check.sh
+    args: []
+    io-format: json
+    inject: true
 config: ~
 properties:
   type: script
@@ -67,6 +72,12 @@ volumes:
   main:
     type: data
   lnd:
+    type: pointer
+    package-id: lnd
+    volume-id: main
+    path: "/public"
+    readonly: true
+  lndboss:
     type: pointer
     package-id: lnd
     volume-id: main
