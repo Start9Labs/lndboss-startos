@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -ea 
+
 echo "AMBOSS_HEALTH_CHECK=true" >> .env
 
 mkdir -p /root/.bos/embassy
