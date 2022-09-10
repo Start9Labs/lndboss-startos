@@ -49,20 +49,19 @@ main:
   args: []
   # Specifies where to mount the data volume(s), if there are any. Mounts for pointer dependency volumes are also denoted here. These are necessary if data needs to be read from / written to these volumes. 
   mounts:
-    # Specifies where on the service's file system its persistence directory should be mounted prior to service startup
     main: /root
-    lnd: /mnt/lnd
-    lndboss: /home/node/.lnd
+    lnd: /home/node/.lnd
 # Health checks 
 health-checks:
-  main:
-    name: Web Interface
+  web:
+    name: LNDBoss Web UI
+    success-message: LNDBoss is ready to visit in a web browser
     type: docker
     image: main
-    entrypoint: health-check.sh
+    entrypoint: "check-web.sh"
     args: []
+    system: false
     io-format: json
-    inject: true
 config: ~
 properties:
   type: script
@@ -72,12 +71,6 @@ volumes:
   main:
     type: data
   lnd:
-    type: pointer
-    package-id: lnd
-    volume-id: main
-    path: "/public"
-    readonly: true
-  lndboss:
     type: pointer
     package-id: lnd
     volume-id: main
