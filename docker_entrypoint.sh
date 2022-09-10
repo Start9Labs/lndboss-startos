@@ -3,7 +3,6 @@
 set -ea 
 
 echo "AMBOSS_HEALTH_CHECK=true" >> .env
-
 mkdir -p /root/.bos/embassy
 chmod -R a+x /root/.bos
 mkdir -p /root/.bosgui/start9

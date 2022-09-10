@@ -31,7 +31,7 @@ health-checks:
     success-message: LNDBoss is ready to visit in a web browser
     type: docker
     image: main
-    entrypoint: "check-web.sh"
+    entrypoint: check_web.sh
     args: []
     system: false
     io-format: json
@@ -108,3 +108,17 @@ migrations:
    "*":
      type: script
      args: ["to"]
+actions:
+  unlock-wallet:
+    name: Reset User
+    description: Delete all user profiles from LNDBoss
+    allowed-statuses:
+      - running
+    implementation:
+      type: docker
+      image: main
+      system: false
+      entrypoint: reset_users.sh
+      args: []
+      inject: true
+      io-format: json

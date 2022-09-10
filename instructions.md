@@ -1,10 +1,14 @@
-# Instructions for LNDBoss
+# Welcome to LNDBoss!
 
-Instructions go here.  These appear to the user in the UI on the Service page under **Instructions**.
-
+A GUI for BalanceofSatoshis. 
 ## Usage Instructions
 
-1. Copy/paste your LNDBoss Tor address into any Tor-enabled browser.
-2. Insert your default username and password. These are located in `Properties`.
-3. Bookmark the site for future visits, or better yet, save it to your Bitwarden server!
-4. Optionally change your default username/password.
+1. Open LNDBoss by using the `LAUNCH UI` button.
+2. For the first time using LNDBoss, you will need to setup your credentials. 
+3. These can be reset anytime by using the `Reset User` Action.
+
+For questions or support, please reach out on telegram.
+
+https://t.me/lndboss
+
+If you would like to Donate to this developer, click on the Share ❤️ in the top right corner of the LNDBoss Dashboard
