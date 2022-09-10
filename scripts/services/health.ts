@@ -79,7 +79,7 @@ const healthVersion: T.ExpectedExports.health[""] = async (
 };
 const healthWeb: T.ExpectedExports.health[""] = async (effects, duration) => {
   await guardDurationAboveMinimum({ duration, minimumTime: 11000 });
-  const fetchWeb = await effects.fetch("http://filebrowser.embassy/health")
+  const fetchWeb = await effects.fetch("http://lndboss.embassy/health")
 
   if (fetchWeb.status === 200) {
     return ok;

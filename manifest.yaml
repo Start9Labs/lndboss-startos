@@ -5,9 +5,9 @@ id: lndboss
  # A human readable service title
 title: "LNDBoss"
 # Service version - accepts up to four digits, where the last confirms to revisions necessary for EmbassyOS - see documentation: https://github.com/Start9Labs/emver-rs. This value will change with each release of the service. 
-version: 1.20.0
+version: 2.0.1
 # Release notes for the update - can be a string, paragraph or URL
-release-notes: "Initial Release"
+release-notes: "Initial Release for EmbassyOS"
 # The type of license for the project. Include the LICENSE in the root of the project directory. A license is required for a Start9 package.
 license: mit
 # The Start9 wrapper repository URL for the package. This repo contains the manifest file (this), any scripts necessary for configuration, backups, actions, or health checks (more below). This key must exist. But could be embedded into the source repository. 
@@ -51,6 +51,7 @@ main:
   mounts:
     # Specifies where on the service's file system its persistence directory should be mounted prior to service startup
     main: /root
+    lnd: /mnt/lnd
 # Health checks 
 health-checks:
   web-ui:
@@ -65,6 +66,12 @@ volumes:
   # This is the image where files from the project asset directory will go
   main:
     type: data
+  lnd:
+    type: pointer
+    package-id: lnd
+    volume-id: main
+    path: "/public"
+    readonly: true
 # This specifies how to configure the port mapping for exposing the service over TOR and LAN (if applicable). Many interfaces can be specified depending on the needs of the service. If it can be launched over a Local Area Network connection, specify a `lan-config`. Otherwise, at minimum, a `tor-config` must be specified.
 interfaces:
   # This key is the internal name that the OS will use to configure the interface

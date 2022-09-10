@@ -1,16 +1,17 @@
-FROM arm64v8/alpine:latest
+FROM --platform=linux/arm64/v8 alexbosworth/balanceofsatoshis as bos
 
-RUN apk update
-RUN apk add tini curl
+FROM --platform=linux/arm64/v8 niteshbalusu/lndboss as lndboss
 
-ADD ./hello-world/target/aarch64-unknown-linux-musl/release/hello-world /usr/local/bin/hello-world
+USER root
+
+ENV BOS_DEFAULT_SAVED_NODE=embassy
+ENV PATH "/app:$PATH"
+
+COPY --from=bos /app/ /app/ 
+
+ADD credentials.json /credentials.json
+RUN mkdir -p /root/.bos/embassy && chmod -R a+x /root/.bos && mv /credentials.json /root/.bos/embassy/credentials.json && chmod a+x /root/.bos/embassy/credentials.json
+
 ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
-RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
 ADD ./scripts/check-web.sh /usr/local/bin/check-web.sh
-RUN chmod +x /usr/local/bin/check-web.sh
-
-WORKDIR /root
-
-EXPOSE 80
-
-ENTRYPOINT ["/usr/local/bin/docker_entrypoint.sh"]
+RUN chmod a+x /usr/local/bin/*.sh

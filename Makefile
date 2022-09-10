@@ -8,7 +8,7 @@ HELLO_WORLD_SRC := $(shell find ./lndboss/src) lndboss/Cargo.toml lndboss/Cargo.
 
 all: verify
 
-install:
+install: all
 	embassy-cli package install $(ID_NAME).s9pk
 
 verify: $(ID_NAME).s9pk
@@ -22,11 +22,8 @@ clean:
 $(ID_NAME).s9pk: manifest.yaml instructions.md icon.png LICENSE scripts/embassy.js image.tar
 	embassy-sdk pack
 
-image.tar: Dockerfile docker_entrypoint.sh scripts/check-web.sh lndboss/target/aarch64-unknown-linux-musl/release/lndboss
+image.tar: Dockerfile docker_entrypoint.sh scripts/check-web.sh
 	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --tag start9/$(ID_NAME)/main:$(VERSION) --platform=linux/arm64 -o type=docker,dest=image.tar .
-
-lndboss/target/aarch64-unknown-linux-musl/release/lndboss: $(HELLO_WORLD_SRC)
-	docker run --rm -it -v ~/.cargo/registry:/root/.cargo/registry -v "$(shell pwd)"/lndboss:/home/rust/src messense/rust-musl-cross:aarch64-musl cargo build --release
 
 scripts/embassy.js: $(TS_FILES)
 	deno bundle scripts/embassy.ts scripts/embassy.js
