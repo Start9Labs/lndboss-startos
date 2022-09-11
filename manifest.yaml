@@ -51,6 +51,12 @@ volumes:
     volume-id: main
     path: "/public"
     readonly: true
+  lndboss:
+    type: pointer
+    package-id: lnd
+    volume-id: main
+    path: "/public"
+    readonly: true
 interfaces:
   main:
     name: LNDBoss Web Interface

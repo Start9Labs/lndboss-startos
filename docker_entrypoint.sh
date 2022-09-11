@@ -7,8 +7,8 @@ mkdir -p /root/.bos/embassy
 chmod -R a+x /root/.bos
 mkdir -p /root/.bosgui/start9
 chmod -R a+x /root/.bosgui
-touch /root/.bosgui/config.json
-touch /root/.bosgui/start9/credentials.json 
+rm -fr /root/.bosgui/config.json && rm -fr /root/.bosgui/start9/credentials.json 
+touch /root/.bosgui/config.json && touch /root/.bosgui/start9/credentials.json 
 
 echo '{
     "cert_path": "/home/node/.lnd/tls.cert",
@@ -22,4 +22,4 @@ echo '{"default_saved_node":"start9"}' >> /root/.bosgui/config.json
 echo "Balance of Satoshis - Version: "
 bos --version
 echo "Starting LNDBoss..."
-yarn start:prod
+exec tini yarn start:prod
