@@ -1,6 +1,6 @@
 # Wrapper for LNDBoss
 
-LNDBoss is a GUI for BalanceOfSatoshis.
+LNDBoss is a GUI for BalanceOfSatoshis. You can run LNDBoss on EmbassyOS by installing an .s9pk file, or you can build your own .s9pk file by following the instuctions below.
 
 ## Dependencies
 
@@ -67,7 +67,7 @@ cd lndboss-wrapper
 
 ## Building
 
-To build the **Hello World** service, run the following command:
+To build the **LNDBoss** service, run the following command:
 
 ```
 make
@@ -86,6 +86,6 @@ embassy-cli --host https://embassy-q1w2e3r4.local package install lndboss.s9pk
 **Tip:** You can also install the lndboss.s9pk using **Sideload Service** under the **Embassy > SETTINGS** section.
 ## Verify Install
 
-Go to your Embassy Services page, select **Hello World**, configure and start the service.
+Go to your Embassy Services page, select **LNDBoss**, configure and start the service.
 
 **Done!** 
