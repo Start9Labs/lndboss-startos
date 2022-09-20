@@ -1,6 +1,6 @@
 FROM --platform=linux/arm64/v8 alexbosworth/balanceofsatoshis as bos-builder
 
-FROM --platform=linux/arm64/v8 niteshbalusu/lndboss as lndboss
+FROM --platform=linux/arm64/v8 niteshbalusu/lndboss:v2.2.0 as lndboss
 
 USER root
 RUN apk add tini bash

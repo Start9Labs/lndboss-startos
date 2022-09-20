@@ -1,7 +1,9 @@
 id: lndboss 
 title: "LNDBoss"
-version: 2.0.1
-release-notes: "Initial Release for EmbassyOS"
+version: 2.2.0
+release-notes: | 
+  * Experimental Support for bos open command for batch open and zero conf channels.
+  * Simplify password usage
 license: mit
 wrapper-repo: "https://github.com/Start9Labs/lndboss-wrapper"
 upstream-repo: "https://github.com/niteshbalusu11/lndboss"
@@ -46,12 +48,6 @@ volumes:
   main:
     type: data
   lnd:
-    type: pointer
-    package-id: lnd
-    volume-id: main
-    path: "/public"
-    readonly: true
-  lndboss:
     type: pointer
     package-id: lnd
     volume-id: main
