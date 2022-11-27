@@ -1,6 +1,10 @@
-FROM --platform=linux/arm64/v8 alexbosworth/balanceofsatoshis as bos-builder
+FROM alexbosworth/balanceofsatoshis as bos-builder
 
-FROM --platform=linux/arm64/v8 niteshbalusu/lndboss:v2.2.0 as lndboss
+FROM niteshbalusu/lndboss:v2.11.0 as lndboss
+
+# arm64 or amd64
+ARG PLATFORM
+ARG ARCH
 
 USER root
 RUN apk add tini bash
@@ -14,6 +18,5 @@ ENV PATH "/app:$PATH"
 COPY --from=bos-builder /app/ /app/ 
 
 ADD docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
-ADD scripts/check-web.sh /usr/local/bin/check_web.sh
 ADD actions/reset-users.sh /usr/local/bin/reset_users.sh
 RUN chmod a+x /usr/local/bin/*.sh
