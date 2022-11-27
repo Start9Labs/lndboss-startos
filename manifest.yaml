@@ -1,7 +1,9 @@
 id: lndboss 
 title: "LNDBoss"
-version: 2.0.1
-release-notes: "Initial Release for EmbassyOS"
+version: 2.11.0
+release-notes: | 
+  * LndBoss v2.11.0 [Release Notes](https://github.com/niteshbalusu11/lndboss/releases/tag/v2.11.0)
+  * Added x86 architecture support
 license: mit
 wrapper-repo: "https://github.com/Start9Labs/lndboss-wrapper"
 upstream-repo: "https://github.com/niteshbalusu11/lndboss"
@@ -16,7 +18,6 @@ assets:
   license: LICENSE
   icon: icon.png
   instructions: instructions.md
-  docker-images: image.tar
 main:
   type: docker
   image: main
@@ -26,15 +27,10 @@ main:
     main: /root
     lnd: /home/node/.lnd
 health-checks:
-  main:
+  web-ui:
     name: Web UI
     success-message: LNDBoss is ready to visit in a web browser
-    type: docker
-    image: main
-    entrypoint: check_web.sh
-    args: []
-    system: false
-    io-format: json
+    type: script
 config:
   get:
     type: script
@@ -46,12 +42,6 @@ volumes:
   main:
     type: data
   lnd:
-    type: pointer
-    package-id: lnd
-    volume-id: main
-    path: "/public"
-    readonly: true
-  lndboss:
     type: pointer
     package-id: lnd
     volume-id: main
